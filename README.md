@@ -1,2 +1,78 @@
 # CNC_robot_control
-Open-source CNC robot workflow engine and editor. CNC automation workflow runner with script editor. Community-driven CNC robot automation platform. CNC robot flow editor and automation framework. Open-source CNC workflow and robot control system. CNC automation and programmable flow editor. Modular CNC robot workflow execution platform.
+
+Universal open-source CNC robot workflow engine and editor.
+
+`CNC_robot_control` provides a desktop Tkinter application for building, editing, and running CNC G-code flows. It includes:
+
+- serial terminal for CNC communication
+- jog controls and homing commands
+- flow editor for line-by-line G-code automation
+- built-in G/M-code reference browser
+- template import and flow save/load support
+- mock serial support when `pyserial` is unavailable
+
+## Download
+
+Download the project from GitHub:
+
+```bash
+git clone https://github.com/salithasadalinda/CNC_robot_control.git
+cd CNC_robot_control
+```
+
+## Requirements
+
+- Python 3.14 or later
+- `pyserial` for real serial port communication
+
+## Install
+
+Create and activate a virtual environment, then install dependencies:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install pyserial
+```
+
+If you want to run tests as well, install the dev dependencies:
+
+```bash
+pip install pytest ruff
+```
+
+## Run the application
+
+From the project root, start the Tkinter GUI:
+
+```bash
+python src\tk_app\main.py
+```
+
+If you prefer to run the package as a module, set `PYTHONPATH` to `src` first:
+
+```bash
+set PYTHONPATH=src
+python -m tk_app.main
+```
+
+## Run tests
+
+From the project root:
+
+```bash
+pytest -q
+```
+
+## Project structure
+
+- `src/tk_app/main.py` – main GUI application
+- `src/tk_app/__init__.py` – package marker
+- `tests/test_smoke.py` – basic import test
+- `pyproject.toml` – project metadata and test configuration
+
+## Notes
+
+- The app includes a mock serial port implementation for offline testing.
+- Use the serial port combobox and baud rate selector to connect to your CNC controller.
+- Saved flows are written as `.gcode` files and loaded back into the editor.
