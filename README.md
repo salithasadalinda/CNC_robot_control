@@ -32,13 +32,13 @@ Create and activate a virtual environment, then install dependencies:
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
-pip install pyserial
+uv pip install -r requirements.txt
 ```
 
 If you want to run tests as well, install the dev dependencies:
 
 ```bash
-pip install pytest ruff
+uv pip install -r requirements-dev.txt
 ```
 
 ## Run the application
