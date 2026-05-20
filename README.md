@@ -28,6 +28,11 @@ cd CNC_robot_control
 
 Release files are built automatically by the `Release` GitHub Actions workflow when a version tag such as `v0.1.0` is pushed, or when the workflow is run manually from the Actions tab.
 
+## Documentation
+
+- [User manual for v0.1.0](docs/v0.1.0/user_manual.md)
+- [Release guide](docs/v0.1.0/release.md)
+
 ## Requirements
 
 - Python 3.14 or later
