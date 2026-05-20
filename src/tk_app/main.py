@@ -10,7 +10,7 @@ Dependencies:
 Run:
     python cnc_controller.py
 """
-
+import logging
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
 import threading
@@ -1645,7 +1645,7 @@ class CNCController(tk.Tk):
         if not cmd: return
         self.cmd_history.append(cmd); self.hist_idx = len(self.cmd_history)
         self.cmd_var.set("")
-        tag = "comment" if cmd.startswith(";") or cmd.startswith("(") else "cmd"
+        tag = "comment" if cmd.startswith((";", "(")) else "cmd"
         self._log(f"  → {cmd}\n", tag)
         if self._valid_gcode(cmd):
             self.last_valid = cmd
@@ -1655,7 +1655,7 @@ class CNCController(tk.Tk):
         self._send_command(cmd)
 
     def _valid_gcode(self, cmd):
-        return bool(re.match(r"^[TGMFgm][0-9]", cmd.strip()))
+        return bool(re.match(r"^[TGMFgm]\d", cmd.strip()))
 
     def _add_to_flow(self):
         if self.last_valid:
@@ -1836,10 +1836,11 @@ class CNCController(tk.Tk):
             self._log(f"  Copied: {self._current_example}\n","sys")
 
     # ════════════════════════════
+    
     #  SERIAL
     # ════════════════════════════
     def _scan_ports(self):
-        ports = serial.tools.list_ports.comports() if SERIAL_AVAILABLE else MockPorts.comports()
+        ports = serial.tools.list_ports.comports() if SERIAL_AVAILABLE else MockPorts.comports() # type: ignore
         self._port_list = [p.device for p in ports]
         names = [f"{p.device} — {p.description}" for p in ports]
         self.port_cb["values"] = names
@@ -1857,8 +1858,7 @@ class CNCController(tk.Tk):
         port = self._port_list[idx]
         baud = int(self.baud_var.get())
         try:
-            self.serial_conn = serial.Serial(port, baud, timeout=2) \
-                               if SERIAL_AVAILABLE else MockSerial()
+            self.serial_conn = serial.Serial(port, baud, timeout=2) if SERIAL_AVAILABLE else MockSerial()  # type: ignore
             self.connected = True
             self.conn_btn.configure(text="Disconnect")
             self.dot.configure(fg=SUCCESS)
@@ -1870,8 +1870,10 @@ class CNCController(tk.Tk):
             self._log(f"Connection failed: {ex}\n","error")
 
     def _disconnect(self):
-        try: self.serial_conn and self.serial_conn.close()
-        except: pass
+        try: self.serial_conn and self.serial_conn.close() # type: ignore
+        except KeyError as e:
+            logging.exception('error while accessing the dict')
+            raise e
         self.serial_conn = None; self.connected = False
         self.conn_btn.configure(text="Connect")
         self.dot.configure(fg=ERROR)
@@ -1885,14 +1887,15 @@ class CNCController(tk.Tk):
                 if line:
                     txt = line.decode("utf-8", errors="replace").strip()
                     if txt: self.after(0, self._log, f"  ← {txt}\n", "resp")
-            except: break
+            except Exception:
+                break
 
     def _send_command(self, cmd):
         cmd = cmd.strip()
         if not cmd: return
         if not self.connected:
             self._log("Not connected.\n","error"); return
-        try: self.serial_conn.write((cmd+"\n").encode())
+        try: self.serial_conn.write((cmd+"\n").encode()) # type: ignore
         except Exception as ex: self._log(f"Send error: {ex}\n","error")
 
     # ════════════════════════════
