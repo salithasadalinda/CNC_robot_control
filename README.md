@@ -13,12 +13,20 @@ Universal open-source CNC robot workflow engine and editor.
 
 ## Download
 
-Download the project from GitHub:
+Prebuilt desktop downloads are published on the latest GitHub release:
+
+- [Windows download](https://github.com/salithasadalinda/CNC_robot_control/releases/latest/download/CNC_robot_control-windows.zip)
+- [macOS download](https://github.com/salithasadalinda/CNC_robot_control/releases/latest/download/CNC_robot_control-macos.zip)
+- [Linux download](https://github.com/salithasadalinda/CNC_robot_control/releases/latest/download/CNC_robot_control-linux.tar.gz)
+
+You can also download the source code from GitHub:
 
 ```bash
 git clone https://github.com/salithasadalinda/CNC_robot_control.git
 cd CNC_robot_control
 ```
+
+Release files are built automatically by the `Release` GitHub Actions workflow when a version tag such as `v0.1.0` is pushed, or when the workflow is run manually from the Actions tab.
 
 ## Requirements
 
