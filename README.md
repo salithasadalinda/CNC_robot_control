@@ -42,6 +42,9 @@ cd CNC_robot_control
 
 - [User manual — v0.1.0](docs/v0.1.0/user_manual.md)
 - [Release guide](docs/v0.1.0/release.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Support guide](SUPPORT.md)
 
 ---
 
@@ -88,7 +91,7 @@ Alternatively, run the package as a module by setting `PYTHONPATH` first:
 set PYTHONPATH=src               # Windows
 # export PYTHONPATH=src          # macOS / Linux
 
-python -m tk_app.main
+python -m tk_app
 ```
 
 ### Connect to your CNC controller

@@ -1,6 +1,8 @@
-- @salithasadalinda
+* @salithasadalinda
 
 .github/ @salithasadalinda
 src/ @salithasadalinda
+tests/ @salithasadalinda
 docs/ @salithasadalinda
 pyproject.toml @salithasadalinda
+uv.lock @salithasadalinda

@@ -1,0 +1,44 @@
+name: Hardware safety report
+description: Report behavior that could cause unsafe machine movement or hardware risk.
+title: "[Safety]: "
+labels: ["safety", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If this is a private security concern, follow SECURITY.md instead of posting details publicly.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Safety concern
+      description: Describe the unsafe behavior or risk.
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Hardware and firmware setup
+      description: Controller, firmware, machine type, baud rate, and operating system.
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands or workflow involved
+      description: Include G-code only if safe to share.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Workaround or mitigation
+      description: How can users avoid the issue for now?

@@ -5,7 +5,7 @@
       "name": "Run CNC Robot Control",
       "type": "debugpy",
       "request": "launch",
-      "module": "tk_app.main",
+      "module": "tk_app",
       "cwd": "${workspaceFolder}",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
