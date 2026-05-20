@@ -86,7 +86,7 @@ jobs:
           merge-multiple: true
 
       - name: Publish release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('manual-{0}', github.run_number) }}
           name: CNC Robot Control ${{ github.ref_type == 'tag' && github.ref_name || format('manual-{0}', github.run_number) }}
