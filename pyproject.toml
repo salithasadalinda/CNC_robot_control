@@ -9,3 +9,7 @@ dependencies = [
 ]
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
