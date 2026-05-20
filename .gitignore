@@ -206,6 +206,26 @@ tempCodeRunnerFile.py
 # Ruff stuff:
 .ruff_cache/
 
+# uv local cache
+.uv-cache/
+
+# Local release/package output
+release/
+*.zip
+*.tar.gz
+*.dmg
+*.pkg
+*.msi
+*.exe
+*.AppImage
+*.deb
+*.rpm
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
 # PyPI configuration file
 .pypirc
 
