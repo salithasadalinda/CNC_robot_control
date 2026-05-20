@@ -7,3 +7,5 @@ requires-python = ">=3.14"
 dependencies = [
     "pyserial>=3.5",
 ]
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
