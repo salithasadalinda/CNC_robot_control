@@ -13,3 +13,11 @@ dev = ["pytest", "ruff"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[tool.ruff.lint]
+ignore = [
+    "E701",
+    "E702",
+    "E722",
+    "E741",
+]

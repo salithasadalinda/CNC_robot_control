@@ -1374,10 +1374,11 @@ class CNCController(tk.Tk):
                    buttonbackground=BG3, insertbackground=ACCENT,
                    font=FONT_MONO).pack(side=tk.LEFT, padx=6)
         pad = tk.Frame(p, bg=BG2); pad.pack(pady=8)
-        jb = lambda t,r,c,cmd: tk.Button(pad, text=t, width=5, height=2,
-            bg=BG3, fg=TEXT, relief="flat", activebackground=ACCENT,
-            activeforeground=BG, font=("Segoe UI",11), cursor="hand2",
-            command=cmd).grid(row=r, column=c, padx=3, pady=3)
+        def jb(t, r, c, cmd):
+            return tk.Button(pad, text=t, width=5, height=2,
+                    bg=BG3, fg=TEXT, relief="flat", activebackground=ACCENT,
+                    activeforeground=BG, font=("Segoe UI",11), cursor="hand2",
+                    command=cmd).grid(row=r, column=c, padx=3, pady=3)
         jb("Y+",0,1,lambda:self._jog("Y",+1))
         jb("X-",1,0,lambda:self._jog("X",-1))
         jb("⌂",1,1,self._home_all)
