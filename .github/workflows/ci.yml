@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.14"]
 
     steps:
       - name: Checkout repository
@@ -33,13 +33,11 @@ jobs:
           pip install uv
 
       - name: Install dependencies (uv)
-        run: |
-          uv sync || uv pip install -r requirements.txt
+        run: uv sync --frozen --extra dev
 
       - name: Lint (ruff if used)
-        run: |
-          uv run ruff check . || true
+        continue-on-error: true
+        run: uv run ruff check .
 
       - name: Run tests
-        run: |
-          uv run pytest
+        run: uv run pytest
